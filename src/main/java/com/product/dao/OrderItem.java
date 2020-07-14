@@ -19,7 +19,7 @@ import com.product.exception.CustomOrderNotFoundException;
 
 
 @Repository
-public class OrderManagementDAO {
+public class OrderItem implements OrderItemDAO{
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
