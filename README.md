@@ -5,16 +5,19 @@ import/clone in STS/eclipse then covert it to maven project.(click on project ro
 ----
 
 OrderItemController(/orderItem): responsible for creating order items, retriving all order items and also fetches order item for given order item id using H2.
-				/createOrderItem
-				/getOrderItem
-				/getOrderItemDetails
+				
+/orderItem/createOrderItem: service takes list of orderItems as json request (request body)
+/orderItem/getOrderItem : service takes order 'itemId' as request param to fetch order item deatils. 
+/orderItem/getOrderItemDetails : service fetches all order items from order item table
 				
 FeignClientOrderController(/ordersFeignClient): responsible for creating orders, retriving order and it fetches order deatils for given order id using H2. 
 			    Here every order will communicate with order item service for retriving order item details using feign client.
-				/createOrder
-				/getOrderDetails
-				/getOrder
-				
+ordersFeignClient/createOrder : service takes list of orders as json request (request body)
+ordersFeignClient/getOrderDetails:service takes orderId as request param to fetch order deatils.
+ordersFeignClient/getOrder:service fetches all orders from order item table.(uses feign client to get order items from /getOrderItem service)
+			
+Both controller services produces and consumes json.
+
 OrderItemsUsingFeign : interface to define target microservice url and service call .(url will be changed if target microservice changes)
 
 H2 Database: schema.sql , data.sql
